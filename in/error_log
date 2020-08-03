@@ -1,0 +1,36 @@
+[02-Jun-2020 23:45:08 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.somosship.com.br/clientes/help/new/in/transactions.php on line 58
+[02-Jun-2020 23:45:08 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.somosship.com.br/clientes/help/new/in/transactions.php on line 58
+[02-Jun-2020 23:46:11 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.somosship.com.br/clientes/help/new/in/transactions.php on line 58
+[02-Jun-2020 23:46:11 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.somosship.com.br/clientes/help/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 14:57:46 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/transactions.php on line 58
+[07-Jul-2020 15:49:56 America/Sao_Paulo] PHP Notice:  Undefined index: l@#$@e@#r in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 6
+[07-Jul-2020 15:49:56 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/freed054/www.helpterapia.com.br/new/in/logout.php:6) in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 8
+[27-Jul-2020 16:58:29 America/Sao_Paulo] PHP Notice:  Undefined index: l@#$@e@#r in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 6
+[27-Jul-2020 16:58:29 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/freed054/www.helpterapia.com.br/new/in/logout.php:6) in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 8
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 67
+[30-Jul-2020 08:24:42 America/Sao_Paulo] PHP Notice:  Undefined offset: 0 in /home1/freed054/www.helpterapia.com.br/new/in/workerevents.php on line 68
+[30-Jul-2020 08:41:03 America/Sao_Paulo] PHP Notice:  Undefined index: l@#$@e@#r in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 6
+[30-Jul-2020 08:41:03 America/Sao_Paulo] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/freed054/www.helpterapia.com.br/new/in/logout.php:6) in /home1/freed054/www.helpterapia.com.br/new/in/logout.php on line 8

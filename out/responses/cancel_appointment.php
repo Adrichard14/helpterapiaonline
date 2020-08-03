@@ -1,0 +1,38 @@
+<?php
+require("../../lib/classes/Package.php");
+$package = new Package(array("_essential", "basic", "newsletter"));
+$to = array("razera.psi@gmail.com");
+$vars = array(
+    "nome",
+    "telefone",
+    "email",
+    "mensagem",
+    
+    );
+foreach ($vars as $key => $var) {
+	if(!isset($_POST,$_POST[$var])){
+		exit(INVALID_COMMAND);
+	}
+	$$var= trim(strip_tags($_POST[$var]));
+}
+$email = strtolower($email);
+	if(!Format::isMail($email)){
+		exit("E-mail inválido");
+	}
+	if(strlen($nome)<3){
+		exit("Por favor informar um nome completo");
+	}
+	$subject = "Contato via website - Solicitação de cancelamento de consulta";
+	$content = "<p>Um cliente enviou uma solicitação de cancelamento de uma consulta, veja abaixo os dados preenchidos na solicitação: </p><p>";
+    $content.="<b>Nome: </b>".$nome."<br>";
+	$content.="<b>Email: </b>".$email."<br>";
+    $content.="<b>Telefone: </b>".$telefone."<br>";
+    $content .= "<b>Dia: </b>" . $dia . "<br>";
+    $content .= "<b>Hora: </b>" . $hora . "<br>";
+    $content .= "<b>Nome do psicólogo: </b>" . $nome_psicologo . "<br>";
+    $content.="<b>Mensagem: </b>".$mensagem."<br>";
+    $send = Newsletter::send($subject,$content,$to);
+    if($send){
+        exit("Mensagem enviada com sucesso! Agradecemos o contato");
+ }
+ exit("Mensagem não enviada");

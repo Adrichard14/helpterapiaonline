@@ -1,0 +1,99 @@
+/*
+    Admin Gallery by Kaique Garcia
+    kaique@freedomdigital.com.br
+*/
+
+#photos, #photos > li, .admin-gallery > ul, .admin-gallery > ul > li {
+    list-style: none;
+}
+.empty-sort {
+    position: relative;
+    background: #dedede;
+    border: 6px dashed #fff;
+    color: #fff;
+    display: block;
+}
+.empty-sort > h1 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translate(0, -50%);
+    text-align: center;
+}
+
+.admin-gallery {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.admin-gallery > a,
+.admin-gallery > ul,
+.admin-gallery > ul > li > span,
+.admin-gallery > span {
+    display: none;
+}
+.admin-gallery:hover > a,
+.admin-gallery > a:hover,
+.admin-gallery:hover > ul,
+.admin-gallery > ul:hover,
+.admin-gallery:hover > span,
+.admin-gallery > span:hover {
+    display: block;
+}
+.admin-gallery > ul > li > i,
+.admin-gallery > ul:hover > li > span,
+.admin-gallery > ul > li:hover > span,
+.admin-gallery > ul > li > span:hover {
+    display: inline-block;
+}
+.admin-gallery > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+.admin-gallery > ul {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    background-color: black;
+    color: white;
+    z-index: 3;
+}
+.admin-gallery > ul > li {
+    display: block;
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+}
+.admin-gallery > ul:hover > li,
+.admin-gallery > ul > li:hover {
+    width: 145px;
+}
+.admin-gallery > ul > li:hover {
+    background: white;
+    color: black;
+}
+.admin-gallery > ul > li > span {
+    margin-left: 10px;
+}
+.admin-gallery > span {
+    position: absolute;
+    padding: 10px;
+    line-height: 10px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: black;
+    color: white;
+    z-index: 2;
+    text-align: right;
+}
