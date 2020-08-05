@@ -21,7 +21,10 @@ if (isset($_GET, $_GET['ID'], $_GET['pID'], $_GET['uID']) && intval($_GET['ID'])
     $event = $event[0];
     $client = Client::load($clientID);
     $client = $client[0];
-    
+
+    // TODO: VALIDAR WEBHOOK E VERIFICAR SE É UM EVENTO DE PAGAMENTO
+    // TODO: ATUALIZAR STATUS DO TRANSACTIONAPPOINTMENT
+
     $transaction = TransactionAppointment::load($ID, "0,1", NULL, 2.0, -1, $clientID, $eventID);
     $psicologo = Psychologist::load($event['workerID']);
     $psicologo = $psicologo[0];

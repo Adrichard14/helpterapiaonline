@@ -5,7 +5,7 @@
             $out[$index] = (is_object($node)) ? xml2array($node) : $node;
         return $out;
     }
-   
+
     // exit(var_dump($_GET));
     if(isset($_GET, $_GET['ID'], $_GET['pID'], $_GET['uID']) && intval($_GET['ID']) > 0 && intval($_GET['pID']) > 0 && intval($_GET['uID']) > 0 && isset($_POST, $_POST['notificationCode'], $_POST['notificationType']) && $_POST['notificationType'] == "transaction") {
         // exit(var_dump('Step1'));
@@ -15,6 +15,10 @@
         $ID = intval($_GET['ID']);
         $planID = intval($_GET['pID']);
         $customerID = intval($_GET['uID']);
+
+        // TODO: VALIDAR WEBHOOK E VERIFICAR SE É UM EVENTO DE PAGAMENTO
+        // TODO: ATUALIZAR STATUS DO TRANSACTION
+
         $transaction = Transaction::load($ID, "0,1", NULL, 2.0, -1, $customerID, $planID);
         // exit(var_dump($transaction[0]['status']));
         if($transaction[0]['status'] == 1){
@@ -63,7 +67,7 @@
         }
         curl_close($curl);
         $transaction = xml2array(simplexml_load_string($transaction));
-       
+
         $pagseguro_status_list = array(
             1 => 0, //aguardando pagamento => pendente
             2 => 0, //em análise => pendente
@@ -87,7 +91,7 @@
         $payment_status = $pagseguro_status_list[$transaction['status']];
         // $ship_status = $pagseguro_status_list2[$transaction['status']];
         $cancel_cause = "";
-        
+
         if($transaction['status'] == 6) {
             $cancel_cause = "Entrega cancelada devido à devolução do pagamento.";
         } elseif($transaction['status'] == 7) {
