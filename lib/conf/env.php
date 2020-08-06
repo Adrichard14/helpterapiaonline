@@ -1,7 +1,7 @@
 <?php
 
 date_default_timezone_set("America/Sao_Paulo");
-define('PACKAGE', '_essential,basic,newsletter,ecommerce,ecommerce/pagseguro');
+define('PACKAGE', 'exceptions,_essential,basic,newsletter,ecommerce,ecommerce/pagseguro');
 if (strpos($_SERVER['HTTP_HOST'], "help.localhost") !== false) {
     # CONFIGURAÇÃO HELP.LOCALHOST
     define('FOLDER', '/');
