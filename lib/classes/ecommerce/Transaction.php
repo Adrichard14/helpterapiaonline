@@ -292,4 +292,34 @@ class Transaction
     {
         return Connector::newInstance()->delete(self::$DATABASE, $where, $args, false);
     }
+
+    /**
+     * @param PagseguroWebhookHandler $handler
+     * @return int
+     */
+    public static function convertWebhookStatus($handler)
+    {
+        if ($handler->isPaymentDone() || $handler->isPaymentAvailable()) {
+            return TransactionStatusEnum::PAID;
+        } elseif ($handler->isPaymentCancelled() || $handler->isPaymentRefunded()) {
+            return TransactionStatusEnum::CANCELLED;
+        } elseif ($handler->isPaymentInDispute()) {
+            return TransactionStatusEnum::IN_DISPUTE;
+        }
+        return TransactionStatusEnum::PENDING;
+    }
+
+    /**
+     * @param PagseguroWebhookHandler $handler
+     * @return string
+     */
+    public static function getWebhookCancelCause($handler)
+    {
+        if ($handler->isPaymentCancelled()) {
+            return "Entrega cancelada devido ao cancelamento do pagamento.";
+        } elseif ($handler->isPaymentRefunded()) {
+            return "Entrega cancelada devido à devolução do pagamento.";
+        }
+        return "";
+    }
 }
