@@ -6,6 +6,11 @@
  * @method static string|null ID()
  * @method static string|null pID()
  * @method static string|null uID()
+ * @method static string|null transactionId()
+ * @method static string|null planId()
+ * @method static string|null customerId()
+ * @method static string|null eventId()
+ * @method static string|null clientId()
  */
 class GET
 {

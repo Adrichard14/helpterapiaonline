@@ -2,14 +2,17 @@
 require_once("lib/classes/Package.php");
 new Package();
 
-$handler = new PagseguroWebhookHandler();
+$handler = new PagSeguroWebhookHandler(
+    PAGSEGURO_TRANSACTION_EMAIL,
+    PAGSEGURO_TRANSACTION_TOKEN
+);
 $handler->setSupportEmail("adrichard14@hotmail.com");
 try {
     $handler->load();
 
-    $ID = intval(GET::ID());
-    $planID = intval(GET::pID());
-    $customerID = intval(GET::uID());
+    $ID = intval(GET::transactionId());
+    $planID = intval(GET::planId());
+    $customerID = intval(GET::customerId());
 
     if ($ID <= 0 || $planID <= 0 || $customerID <= 0) {
         throw new Exception("Dados de entrada inválidos.");
@@ -26,7 +29,7 @@ try {
     $transaction = $transaction[0];
     $buyer = $buyer[0];
 
-    if ($handler->getReference() !== "REF{$transaction["ID"]}") {
+    if ($handler->getReference() !== "REF{$transaction["ID"]}_PLAN") {
         throw new Exception("A referência da transação é diferente da referência da notificação do PagSeguro.");
     }
 
@@ -73,13 +76,13 @@ try {
 
     Psychologist::setExpirePlanDate($prizesPerPlanId[$planID], $customerID);
 
-    $url = "www.helpterapia.com.br";
+    $url = PUBLIC_URL;
     Newsletter::send('Parabéns!',
-        "<p>A compra do seu plano foi aprovada!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> faça o seu login!</h5>",
+        "<p>O pagamento do seu plano foi aprovado!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> faça o seu login!</h5>",
         $buyer['email']
     );
 } catch (Exception $exception) {
     $handler->sendSupportEmail(PUBLIC_URL . " - Erro no gatilho de planos",
-        "Ocorreu um erro durante o recebimento do gatilho {$handler->getNotificationCode()} da pagseguro.<br/>Erro retornado: {$exception->getMessage()}.");
+        "Ocorreu um erro durante o recebimento do gatilho {$handler->getNotificationCode()} da PagSeguro.<br/>Erro retornado: {$exception->getMessage()}.");
     exit;
 }

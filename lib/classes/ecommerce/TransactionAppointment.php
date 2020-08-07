@@ -210,16 +210,18 @@ class TransactionAppointment
         );
 
         $request->setCurrency('BRL');
-        $request->setReference("REF" . $elem['ID']);
+        $request->setReference("REF" . $elem['ID'] . "_EVENT");
         $request->setRedirectUrl(PUBLIC_URL);
-        $request->addParameter('notificationURL',
-            PUBLIC_URL . 'transaction-notify-appointment.php?ID=' . $elem['ID'] . '&pID=' . $elem['eventID'] . '&uID=' . $elem['clientID']);
-        // $request->addParameter('notificationURL', PUBLIC_URL.'transaction-notify.php?ID='.$elem['ID'].'&cID='.$elem['eventID'].'&uID='.$elem['clientID']);
+        $request->addParameter(
+            'notificationURL',
+            PUBLIC_URL . 'transaction-notify-appointment.php?transactionId=' . $elem['ID'] . '&eventId=' . $elem['eventID'] . '&clientId=' . $elem['clientID']
+        );
         $checkoutURL = null;
         try {
-            // $credentials = PagSeguroConfig::getAccountCredentials();
-            $credentials = new PagSeguroAccountCredentials('helpterapiaonline@gmail.com',
-                'bfd9d68d-e949-428a-9302-687039b7176b5144c01547ae90a9f21d7c685da411677ff9-56a1-47c4-ab9e-19bcf72d88a6');
+            $credentials = new PagSeguroAccountCredentials(
+                PAGSEGURO_TRANSACTION_APPOINTMENT_EMAIL,
+                PAGSEGURO_TRANSACTION_APPOINTMENT_TOKEN
+            );
             $checkoutURL = $request->register($credentials);
             $subject = 'Compra do plano HELP!';
             $content = '<p><h1 style="text-align: center;">Solicitação de consulta com o psicólogo' . $psicologo['name'] . '</h1></p><table style="width: 100%;margin-bottom: 1rem;color: #212529;>';
@@ -309,5 +311,35 @@ class TransactionAppointment
     public static function delete($args, $where = " WHERE `ID`=?")
     {
         return Connector::newInstance()->delete(self::$DATABASE, $where, $args, false);
+    }
+
+    /**
+     * @param PagSeguroWebhookHandler $handler
+     * @return int
+     */
+    public static function convertWebhookStatus($handler)
+    {
+        if ($handler->isPaymentDone() || $handler->isPaymentAvailable()) {
+            return TransactionStatusEnum::PAID;
+        } elseif ($handler->isPaymentCancelled() || $handler->isPaymentRefunded()) {
+            return TransactionStatusEnum::CANCELLED;
+        } elseif ($handler->isPaymentInDispute()) {
+            return TransactionStatusEnum::IN_DISPUTE;
+        }
+        return TransactionStatusEnum::PENDING;
+    }
+
+    /**
+     * @param PagSeguroWebhookHandler $handler
+     * @return string
+     */
+    public static function getWebhookCancelCause($handler)
+    {
+        if ($handler->isPaymentCancelled()) {
+            return "Entrega cancelada devido ao cancelamento do pagamento.";
+        } elseif ($handler->isPaymentRefunded()) {
+            return "Entrega cancelada devido à devolução do pagamento.";
+        }
+        return "";
     }
 }

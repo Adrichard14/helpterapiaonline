@@ -1,13 +1,26 @@
 <?php
 
-class PagseguroWebhookHandler
+class PagSeguroWebhookHandler
 {
-    private $accountEmail = PagSeguroConfigWrapper::PAGSEGURO_EMAIL;
+    private $accountEmail;
+    private $accountToken;
+
     private $supportEmail;
 
     private $code;
     private $type;
     private $xml = [];
+
+    /**
+     * PagseguroWebhookHandler constructor.
+     * @param string $accountEmail
+     * @param string $accountToken
+     */
+    public function __construct($accountEmail, $accountToken)
+    {
+        $this->accountEmail = $accountEmail;
+        $this->accountToken = $accountToken;
+    }
 
     /**
      * @throws UnacceptableNotificationTypeException
@@ -135,21 +148,12 @@ class PagseguroWebhookHandler
     {
         return $this->xml;
     }
-
-    protected function getToken()
-    {
-        if (PagSeguroConfigWrapper::PAGSEGURO_ENV == "production") {
-            return PagSeguroConfigWrapper::PAGSEGURO_TOKEN_PRODUCTION;
-        }
-        return PagSeguroConfigWrapper::PAGSEGURO_TOKEN_SANDBOX;
-    }
-
     protected function getEndpoint()
     {
         $preUrl = PagSeguroConfigWrapper::PAGSEGURO_ENV == "production"
             ? "https://ws.pagseguro.uol.com.br"
             : "https://ws.sandbox.pagseguro.uol.com.br";
-        return "$preUrl/v2/transactions/notifications/{$this->code}?email={$this->accountEmail}&token={$this->getToken()}";
+        return "$preUrl/v2/transactions/notifications/{$this->code}?email={$this->accountEmail}&token={$this->accountToken}";
     }
 
     /**

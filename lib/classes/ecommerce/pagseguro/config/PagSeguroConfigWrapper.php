@@ -27,19 +27,19 @@ class PagSeguroConfigWrapper
     /**
      * production or sandbox
      */
-    const PAGSEGURO_ENV = 'production';
+    const PAGSEGURO_ENV = PAGSEGURO_ENV;
     /**
      *
      */
-    const PAGSEGURO_EMAIL = "helpterapia@gmail.com";
+    const PAGSEGURO_EMAIL = "";
     /**
      *
      */
-    const PAGSEGURO_TOKEN_PRODUCTION = "50900f73-9255-448f-9122-350867f3b4b30b08f922498cb42aab46d995c864fcd1645b-5bee-47b0-a38f-8a32e48b402b";
+    const PAGSEGURO_TOKEN_PRODUCTION = "";
     /**
      *
      */
-    const PAGSEGURO_TOKEN_SANDBOX = "50900f73-9255-448f-9122-350867f3b4b30b08f922498cb42aab46d995c864fcd1645b-5bee-47b0-a38f-8a32e48b402b";
+    const PAGSEGURO_TOKEN_SANDBOX = "";
     /**
      *
      */

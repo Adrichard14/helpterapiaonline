@@ -206,16 +206,18 @@ class Transaction
         );
 
         $request->setCurrency('BRL');
-        $request->setReference("REF" . $elem['ID']);
+        $request->setReference("REF" . $elem['ID'] . "_PLAN");
         $request->setRedirectUrl(PUBLIC_URL);
         $request->addParameter('notificationURL',
-            PUBLIC_URL . 'transaction-notify.php?ID=' . $elem['ID'] . '&pID=' . $elem['planID'] . '&uID=' . $elem['customerID']);
+            PUBLIC_URL . 'transaction-notify.php?transactionId=' . $elem['ID'] . '&planId=' . $elem['planID'] . '&customerId=' . $elem['customerID']);
         // $request->addParameter('notificationURL', PUBLIC_URL.'transaction-notify.php?ID='.$elem['ID'].'&cID='.$elem['planID'].'&uID='.$elem['customerID']);
         $checkoutURL = null;
         try {
-            $credentials = PagSeguroConfig::getAccountCredentials();
+            $credentials = new PagSeguroAccountCredentials(
+                PAGSEGURO_TRANSACTION_EMAIL,
+                PAGSEGURO_TRANSACTION_TOKEN
+            );
             $checkoutURL = $request->register($credentials);
-            // exit(var_dump($checkoutURL));
             $subject = 'Compra do plano HELP!';
             $content = '<p><h1 style="text-align: center;">Solicitação do plano' . $plan[0]['title'] . '</h1></p><table>';
             $content .= '<tr><th>Plano/th><th>Valor</th><th>Total</th></tr><tr><td style="text-align: right">' . Format::toMoney($plan[0]['price']) . '</td></tr><tr><th colspan="3" style="text-align: right">TOTAL</th><td style="text-align: right">' . Format::toMoney($plan[0]['price']) . '</td></tr>';
@@ -294,7 +296,7 @@ class Transaction
     }
 
     /**
-     * @param PagseguroWebhookHandler $handler
+     * @param PagSeguroWebhookHandler $handler
      * @return int
      */
     public static function convertWebhookStatus($handler)
@@ -310,7 +312,7 @@ class Transaction
     }
 
     /**
-     * @param PagseguroWebhookHandler $handler
+     * @param PagSeguroWebhookHandler $handler
      * @return string
      */
     public static function getWebhookCancelCause($handler)
