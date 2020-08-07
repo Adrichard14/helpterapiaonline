@@ -73,9 +73,14 @@ try {
     // ativação de compra
     $url = PUBLIC_URL;
     Newsletter::send(
-        'Parabéns, ' . $client['name'] . '!',
+        "Parabéns, {$client['name']}!",
         "<p>O pagamento da sua consulta com o psicólogo <strong>{$psychologist['name']}</strong>, no dia <strong>{$event['date']}</strong> às {$event['hour']} foi aprovado!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> e faça o seu login!</h5>",
         $client['mail']
+    );
+    Newsletter::send(
+        "Agendamento confirmado",
+        "<p>O pagamento da sua consulta com o cliente <strong>{$client['name']}</strong>, no dia <strong>{$event['date']}</strong> às {$event['hour']} foi aprovado!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> e faça o seu login!</h5>",
+        $psychologist['mail']
     );
 } catch (Exception $exception) {
     $handler->sendSupportEmail(PUBLIC_URL . " - Erro no gatilho de planos",

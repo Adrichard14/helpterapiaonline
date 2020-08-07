@@ -77,9 +77,10 @@ try {
     Psychologist::setExpirePlanDate($prizesPerPlanId[$planID], $customerID);
 
     $url = PUBLIC_URL;
-    Newsletter::send('Parabéns!',
+    Newsletter::send(
+        'Parabéns!',
         "<p>O pagamento do seu plano foi aprovado!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> faça o seu login!</h5>",
-        $buyer['email']
+        $buyer['mail']
     );
 } catch (Exception $exception) {
     $handler->sendSupportEmail(PUBLIC_URL . " - Erro no gatilho de planos",
