@@ -26,7 +26,7 @@ try {
     if (empty($event)) {
         throw new Exception("Agendamento não encontrado.");
     }
-    $psychologist = Psychologist::load($event['workerID']);
+    $psychologist = Psychologist::load($event[0]['workerID']);
     if (empty($psychologist)) {
         throw new Exception("Psicólogo não encontrado.");
     }
@@ -46,18 +46,18 @@ try {
     $transaction["cancel_cause"] = TransactionAppointment::getWebhookCancelCause($handler);
     $newStatus = TransactionAppointment::convertWebhookStatus($handler);
 
-    if ($newStatus === $transaction["status"]) {
+    if ($newStatus === $transaction["payment_status"]) {
         // nenhuma alteração necessária
-        exit;
+        exit("no changes");
     }
 
-    $transaction["status"] = $newStatus;
+    $transaction["payment_status"] = $newStatus;
 
     $update = Connector::newInstance()->query(
         "UPDATE `" . TransactionAppointment::$DATABASE . "`
         SET
             `cancel_cause`='{$transaction["cancel_cause"]}',
-            `payment_status`={$transaction["status"]},
+            `payment_status`={$transaction["payment_status"]},
             `status_date`=NOW()
         WHERE `ID`={$transaction['ID']}",
         null,
@@ -66,9 +66,9 @@ try {
 
     if (!$update) {
         throw new Exception("Ocorreu uma falha durante a ativação da transação #{$transaction["ID"]} no banco de dados");
-    } elseif ($transaction["status"] !== TransactionStatusEnum::PAID) {
+    } elseif ($transaction["payment_status"] !== TransactionStatusEnum::PAID) {
         // não é uma ativação, logo pode ser encerrado aqui
-        exit;
+        exit("it's not paid");
     }
     // ativação de compra
     $url = PUBLIC_URL;
@@ -82,8 +82,9 @@ try {
         "<p>O pagamento da sua consulta com o cliente <strong>{$client['name']}</strong>, no dia <strong>{$event['date']}</strong> às {$event['hour']} foi aprovado!</p></br><h5>Acesse: <a href='$url' target='_blank'>$url</a> e faça o seu login!</h5>",
         $psychologist['mail']
     );
+    exit("OK");
 } catch (Exception $exception) {
     $handler->sendSupportEmail(PUBLIC_URL . " - Erro no gatilho de planos",
         "Ocorreu um erro durante o recebimento do gatilho {$handler->getNotificationCode()} da PagSeguro.<br/>Erro retornado: {$exception->getMessage()}.");
-    exit;
+    exit($exception->getMessage());
 }

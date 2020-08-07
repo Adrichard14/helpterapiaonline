@@ -54,37 +54,37 @@ class PagSeguroWebhookHandler
 
     public function isPaymentPending()
     {
-        return $this->xml["status"] === 1;
+        return intval($this->xml["status"]) === 1;
     }
 
     public function isPaymentUnderAnalysis()
     {
-        return $this->xml["status"] === 2;
+        return intval($this->xml["status"]) === 2;
     }
 
     public function isPaymentDone()
     {
-        return $this->xml["status"] === 3;
+        return intval($this->xml["status"]) === 3;
     }
 
     public function isPaymentAvailable()
     {
-        return $this->xml["status"] === 4;
+        return intval($this->xml["status"]) === 4;
     }
 
     public function isPaymentInDispute()
     {
-        return $this->xml["status"] === 5;
+        return intval($this->xml["status"]) === 5;
     }
 
     public function isPaymentRefunded()
     {
-        return $this->xml["status"] === 6;
+        return intval($this->xml["status"]) === 6;
     }
 
     public function isPaymentCancelled()
     {
-        return $this->xml["status"] === 7;
+        return intval($this->xml["status"]) === 7;
     }
 
     public function hasStatus()
